@@ -67,10 +67,11 @@ InstanceType* Field::adjustInstancePointerAddress(InstanceType* instance) const
 {
 	Struct const& ownerStruct = *getOwner();
 
-	if (ownerStruct != instance->getArchetype())
-	{
-		throw InvalidArchetype("The instance dynamic archetype must match the field's owner.");
-	}
+    // TODO:这里 ownerStruct 可能是 instance->getArchetype() 的派生类，这种情况不应该被阻止转换
+	// if (ownerStruct != instance->getArchetype())
+	// {
+	// 	throw InvalidArchetype("The instance dynamic archetype must match the field's owner.");
+	// }
 
 	//We are sure at this point that the targetArchetype is the instance dynamic archetype.
 	//so we know InstanceType is a parent class of targetArchetype or targetArchetype itself.
